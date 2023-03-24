@@ -1,0 +1,3 @@
+\w+(?:[-_]\w+)*	simpletokens	type	word
+[\.\?,/]+	simpletokens	type	punctuation
+[0-9]+(?:[,\.][0-9]+)	simpletokens	type	number
