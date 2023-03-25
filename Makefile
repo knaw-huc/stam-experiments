@@ -7,3 +7,6 @@ clean:
 .PHONY: exp1
 exp1:
 	cd exp1; make; cd ..
+
+docker:
+	docker build -t knaw-huc/stam-experiments . 
