@@ -17,13 +17,13 @@ exp1.store.stam.json: smallquote.txt simpletagger.tsv
 	stam validate exp1.store.stam.json
 
 	@echo -e "\n\nSTAGE 4/6 -------------------------------">&2
-	stam tag --debug --rules simpletagger.tsv exp1.store.stam.json
+	stam tag --rules simpletagger.tsv exp1.store.stam.json
 
 	@echo -e "\n\nSTAGE 5/6 -------------------------------">&2
-	stam info exp1.store.stam.json
+	stam info --verbose exp1.store.stam.json
 
-	@echo -e "\n\nSTAGE 5/6 -------------------------------">&2
-	stam to-tsv exp1.store.stam.json
+	@echo -e "\n\nSTAGE 6/6 -------------------------------">&2
+	stam to-tsv --verbose exp1.store.stam.json
 
 clean:
 	-rm exp1.store.stam.json
