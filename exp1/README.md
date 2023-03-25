@@ -6,7 +6,7 @@ It demonstrates:
 
 1. `stam init`: initializing a stam annotation store from scratch, adding only a single small input text
 2. `stam info`: info on the annotation store (containing nothing but the text resource at this point)
-3. `stam tag`: run a simple regular-expression based tagger on the resources, effectively tokenizing it and producing STAM data
+3. `stam tag`: run a simple regular-expression based tagger on the resources, effectively tokenizing it and producing STAM data. The tagging is on on the basis of [these simple rules](../stam-tag/simpletagger.tsv).
 4. `stam validate`: validate all of the resulting STAM JSON
 5. `stam info`: info on the annotation store at this point
 6. `stam to-tsv`: output the annotations in the store to tsv 
