@@ -1,7 +1,7 @@
 all: exp1.store.stam.json
 
 simpletagger.tsv: 
-	@ln -s ../config/stam-tsv/simpletagger.tsv
+	@ln -s ../config/stam-tag/simpletagger.tsv
 
 smallquote.txt: 
 	@ln -s ../texts/smallquote.txt
