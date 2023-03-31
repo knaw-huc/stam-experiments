@@ -11,15 +11,15 @@ exp2.store.stam.json: verne.txt simpletagger.tsv
 	stam init --resource verne.txt exp2.store.stam.json
 
 	@echo -e "\n\nSTAGE 2/3 -------------------------------">&2
-	stam tag --rules simpletagger.tsv exp2.store.stam.json
+	time stam tag --rules simpletagger.tsv exp2.store.stam.json
 
 	@echo -e "\n\nSTAGE 3/3 -------------------------------">&2
-	stam info exp2.store.stam.json
+	time stam info exp2.store.stam.json
 	@echo -e "\n\n-----------------------------------------">&2
 
 
 exp2.tsv: exp2.store.stam.json
-	stam to-tsv --verbose exp2.store.stam.json > exp2.tsv
+	time stam to-tsv --verbose exp2.store.stam.json > exp2.tsv
 
 clean:
 	-rm exp2.store.stam.json exp2.tsv
