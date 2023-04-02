@@ -1,4 +1,4 @@
-all: exp2.tsv
+all: exp2.store.stam.json exp2.store.stam.csv
 
 simpletagger.tsv: 
 	@ln -s ../config/stam-tag/simpletagger.tsv
@@ -18,11 +18,17 @@ exp2.store.stam.json: verne.txt simpletagger.tsv
 	@echo -e "\n\n-----------------------------------------">&2
 
 
-exp2.tsv: exp2.store.stam.json
-	time stam to-tsv --verbose exp2.store.stam.json > exp2.tsv
+exp2.store.stam.csv: exp2.store.stam.json
+	@echo -e "\n\nSTAGE 1/2 -------------------------------">&2
+	time stam save -o exp2.store.stam.csv exp2.store.stam.json
+	@echo -e "\n\n-----------------------------------------">&2
+
+	@echo -e "\n\nSTAGE 2/2 -------------------------------">&2
+	time stam info exp2.store.stam.csv
+	@echo -e "\n\n-----------------------------------------">&2
 
 clean:
-	-rm exp2.store.stam.json exp2.tsv
+	-rm exp2.store.stam.json exp2*csv
 
 
 	
