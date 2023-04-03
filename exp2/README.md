@@ -21,7 +21,7 @@ You may want to run this in the provided Docker container (one level up).
 
 The book contains 107750 words (12807 lines).
 
-A side-product of this experiment is that it provides some insight in the different serialized file size (STAM JSON vs STAM CSV):
+A side-product of this experiment is that it provides some insight in the different serialized file sizes (STAM JSON vs STAM CSV):
 
 ```
  624K  verne.txt
@@ -31,6 +31,7 @@ A side-product of this experiment is that it provides some insight in the differ
    93  simpletokens.annotationset.stam.csv
 
   62M  exp2.store.stam.json
+
   35M  exp2.compact.store.stam.json
 ```
 
