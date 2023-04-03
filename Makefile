@@ -1,4 +1,4 @@
-all: exp1
+all: exp1 exp2 exp3
 
 .PHONY: clean
 clean:
@@ -7,6 +7,14 @@ clean:
 .PHONY: exp1
 exp1:
 	cd exp1; make; cd ..
+
+.PHONY: exp2
+exp2:
+	cd exp2; make; cd ..
+
+.PHONY: exp3
+exp3:
+	cd exp3; make; cd ..
 
 docker:
 	docker build -t knaw-huc/stam-experiments . 
