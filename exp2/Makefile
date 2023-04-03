@@ -1,4 +1,4 @@
-all: exp2.store.stam.json exp2.store.stam.csv
+all: exp2.store.stam.json exp2.store.stam.csv exp2.compact.store.stam.json
 
 simpletagger.tsv: 
 	@ln -s ../config/stam-tag/simpletagger.tsv
@@ -27,8 +27,11 @@ exp2.store.stam.csv: exp2.store.stam.json
 	time stam info exp2.store.stam.csv
 	@echo -e "\n\n-----------------------------------------">&2
 
+exp2.compact.store.stam.json: exp2.store.stam.json
+	jq -c < $< > $@
+
 clean:
-	-rm exp2.store.stam.json exp2*csv
+	-rm exp2*json exp2*csv
 
 
 	
