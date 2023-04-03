@@ -3,6 +3,7 @@
 Experiments with [STAM](https://github.com/annotation/stam) and its implementations
 
 * `exp1` -- [Experiment 1: STAM Tools on a very small text](exp1/README.md)
+* `exp2` -- [Experiment 1: STAM Tools on a book](exp2/README.md)
 
 ## Installation
 
