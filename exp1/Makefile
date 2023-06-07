@@ -23,7 +23,7 @@ exp1.store.stam.json: smallquote.txt simpletagger.tsv
 	stam info --verbose exp1.store.stam.json
 
 	@echo -e "\n\nSTAGE 6/6 -------------------------------">&2
-	stam to-tsv --verbose exp1.store.stam.json
+	stam export --verbose exp1.store.stam.json
 
 clean:
 	-rm exp1.store.stam.json

@@ -28,7 +28,7 @@ exp2.store.stam.csv: exp2.store.stam.json
 	@echo -e "\n\n-----------------------------------------">&2
 
 exp2.tsv: exp2.store.stam.csv
-	time stam to-tsv -C Id,Text,TextSelection,simpletokens/type $< > $@
+	time stam export -C Id,Text,TextSelection,simpletokens/type $< > $@
 
 exp2.compact.store.stam.json: exp2.store.stam.json
 	jq -c < $< > $@
