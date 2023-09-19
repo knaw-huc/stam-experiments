@@ -364,27 +364,27 @@ fn main() -> Result<(), stam::StamError> {
     )?;
     let args: Vec<_> = env::args().collect();
 
-    if args.is_empty() || args[0] == "a" {
+    if args.len() <= 1 || args[1] == "a" {
         eprintln!("A (naive, no variables):");
         version_a(&store)?;
     }
-    if args.is_empty() || args[0] == "a2" {
+    if args.len() <= 1 || args[1] == "a2" {
         eprintln!("A2 (collect all words):");
         version_a2(&store)?;
     }
-    if args.is_empty() || args[0] == "a3" {
+    if args.len() <= 1 || args[1] == "a3" {
         eprintln!("A3 (normal):");
         version_a3(&store)?;
     }
-    if args.is_empty() || args[0] == "a4" {
+    if args.len() <= 1 || args[1] == "a4" {
         eprintln!("A4 (parallel):");
         version_a4(&store)?;
     }
-    if args.is_empty() || args[0] == "b" {
+    if args.len() <= 1 || args[1] == "b" {
         eprintln!("B (measured details):");
         version_b(&store)?;
     }
-    if args.is_empty() || args[0] == "c" {
+    if args.len() <= 1 || args[1] == "c" {
         eprintln!("C (sets):");
         version_c(&store)?;
     }
