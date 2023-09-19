@@ -1,5 +1,6 @@
 use stam;
 use std::collections::BTreeSet;
+use std::env;
 use std::ops::Deref;
 use std::time::{Duration, SystemTime};
 
@@ -361,16 +362,31 @@ fn main() -> Result<(), stam::StamError> {
         "bhsa.store.stam.cbor", //BAD hardcoded!
         stam::Config::default(),
     )?;
-    eprintln!("A (naive, no variables):");
-    version_a(&store)?;
-    eprintln!("A2 (collect all words):");
-    version_a2(&store)?;
-    eprintln!("A3 (normal):");
-    version_a3(&store)?;
-    eprintln!("A4 (parallel):");
-    version_a4(&store)?;
-    eprintln!("B (measured details):");
-    version_b(&store)?;
-    eprintln!("C (sets):");
-    version_c(&store)
+    let args: Vec<_> = env::args().collect();
+
+    if args.is_empty() || args[0] == "a" {
+        eprintln!("A (naive, no variables):");
+        version_a(&store)?;
+    }
+    if args.is_empty() || args[0] == "a2" {
+        eprintln!("A2 (collect all words):");
+        version_a2(&store)?;
+    }
+    if args.is_empty() || args[0] == "a3" {
+        eprintln!("A3 (normal):");
+        version_a3(&store)?;
+    }
+    if args.is_empty() || args[0] == "a4" {
+        eprintln!("A4 (parallel):");
+        version_a4(&store)?;
+    }
+    if args.is_empty() || args[0] == "b" {
+        eprintln!("B (measured details):");
+        version_b(&store)?;
+    }
+    if args.is_empty() || args[0] == "c" {
+        eprintln!("C (sets):");
+        version_c(&store)?;
+    }
+    Ok(())
 }
