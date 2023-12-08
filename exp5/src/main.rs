@@ -1,4 +1,4 @@
-use stam;
+use stam::*;
 use std::collections::BTreeSet;
 use std::env;
 use std::ops::Deref;
@@ -12,21 +12,20 @@ fn version_naive(store: &stam::AnnotationStore) -> Result<(), stam::StamError> {
     let mut results = Vec::new();
     let begin = SystemTime::now();
 
-    for (i, phrase) in store
+    for phrase in store
         .find_data("features", "otype", stam::DataOperator::Equals("phrase"))
         .annotations()
-        .enumerate()
     {
-        let mut words = phrase.annotations_in_targets(false).filter_find_data(
-            "features",
-            "otype",
+        let mut words = phrase.annotations_in_targets(false).filter_key_value(
+            &store.key("features", "otype").or_fail()?,
             stam::DataOperator::Equals("word"),
         );
 
         if let (Some(firstword), Some(lastword)) = (words.next(), words.last()) {
             if let Some(data) = firstword
                 .annotations()
-                .find_data("features", "nu", stam::DataOperator::Any)
+                .data()
+                .filter_key(&store.key("features", "nu").or_fail()?)
                 .next()
             {
                 if lastword
@@ -67,11 +66,7 @@ fn version_cached(store: &stam::AnnotationStore) -> Result<(), stam::StamError> 
             .filter_annotationdata(&otype_word);
 
         if let (Some(firstword), Some(lastword)) = (words.next(), words.last()) {
-            if let Some(data_nu) = firstword
-                .annotations()
-                .find_data(&set_features, &key_nu, stam::DataOperator::Any)
-                .next()
-            {
+            if let Some(data_nu) = firstword.annotations().data().filter_key(&key_nu).next() {
                 if lastword
                     .annotations()
                     .data()
@@ -110,11 +105,7 @@ fn version_parallel(store: &stam::AnnotationStore) -> Result<(), stam::StamError
                 .filter_annotationdata(&otype_word);
 
             if let (Some(firstword), Some(lastword)) = (words.next(), words.last()) {
-                if let Some(data_nu) = firstword
-                    .annotations()
-                    .find_data(&set_features, &key_nu, stam::DataOperator::Any)
-                    .next()
-                {
+                if let Some(data_nu) = firstword.annotations().data().filter_key(&key_nu).next() {
                     if lastword
                         .annotations()
                         .data()
@@ -146,7 +137,7 @@ fn version_morecache(store: &stam::AnnotationStore) -> Result<(), stam::StamErro
         .data()
         .annotations()
         .annotations_in_targets(false)
-        .to_cache();
+        .to_handles(store);
 
     let otype_word = store
         .find_data(&set_features, "otype", stam::DataOperator::Equals("word"))
@@ -163,19 +154,15 @@ fn version_morecache(store: &stam::AnnotationStore) -> Result<(), stam::StamErro
 
         if let (Some(firstword), Some(lastword)) = (words.next(), words.last()) {
             if annotations_nu
-                .iter()
-                .filter_annotations(stam::AnnotationsIter::from_iter(
-                    [firstword.clone(), lastword.clone()].into_iter(),
-                    true,
-                    store,
-                ))
+                .items()
+                .filter_annotations(
+                    [firstword.clone(), lastword.clone()]
+                        .into_iter()
+                        .to_handles(store),
+                )
                 .test()
             {
-                if let Some(data_nu) = firstword
-                    .annotations()
-                    .find_data(&set_features, &key_nu, stam::DataOperator::Any)
-                    .next()
-                {
+                if let Some(data_nu) = firstword.annotations().data().filter_key(&key_nu).next() {
                     if lastword
                         .annotations()
                         .data()
