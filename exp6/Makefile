@@ -1,4 +1,4 @@
-all: stamvis1.html stamvis2.html stamvis3.html
+all: stamvis1.html stamvis2.html stamvis3.html stamvis4.html
 
 stamvis1.html:
 	stam view --query "SELECT RESOURCE ?res" \
@@ -21,5 +21,8 @@ stamvis3.html:
 			--query "SELECT ANNOTATION ?name WHERE RELATION ?sentence EMBEDS; DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-ner-nl\" \"class\";" \
 			frogdeep.store.stam.json > $@
 
-clean:
-	rm stamvis*.html
+stamvis4.html:
+	stam view --query "SELECT RESOURCE ?res" \
+			--query "SELECT ANNOTATION ?sentence WHERE RESOURCE ?res; DATA \"https://w3id.org/folia/\" \"annotationtype\" = \"sentence\";" \
+			--query "SELECT ANNOTATION ?word WHERE RESOURCE ?res; DATA \"https://w3id.org/folia/\" \"annotationtype\" = \"token\";" \
+			frogdeep.store.stam.json > $@
