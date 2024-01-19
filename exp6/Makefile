@@ -9,9 +9,9 @@ stamvis1.html:
 
 stamvis2.html:
 	stam view --query "SELECT RESOURCE ?res" \
-			--query "@VALUE SELECT ANNOTATION ?pos WHERE RESOURCE ?res; KEY \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-mbpos-cgn\" \"head\";" \
-			--query "@VALUE SELECT ANNOTATION ?lemma WHERE RESOURCE ?res; KEY \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-mblem-nl\" \"class\";" \
-			--query "@VALUE SELECT ANNOTATION ?name WHERE RESOURCE ?res; KEY \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-ner-nl\" \"class\"" \
+			--query "@VALUE SELECT ANNOTATION ?pos WHERE RESOURCE ?res; DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-mbpos-cgn\" \"head\";" \
+			--query "@VALUE SELECT ANNOTATION ?lemma WHERE RESOURCE ?res; DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-mblem-nl\" \"class\";" \
+			--query "@VALUE SELECT ANNOTATION ?name WHERE RESOURCE ?res; DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-ner-nl\" \"class\"" \
 			frogdeep.store.stam.json > $@
 
 stamvis3.html:
