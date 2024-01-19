@@ -27,7 +27,8 @@ stamvis3.html:
 stamvis4.html:
 	#Show some structural types.
 	stam view --query "SELECT RESOURCE ?res" \
-			--query "SELECT ANNOTATION ?sentence WHERE RESOURCE ?res; DATA \"https://w3id.org/folia/\" \"annotationtype\" = \"sentence\";" \
+			--query "@VALUE SELECT ANNOTATION ?paragraph WHERE RESOURCE ?res; DATA \"https://w3id.org/folia/\" \"annotationtype\" = \"paragraph\";" \
+			--query "@VALUE SELECT ANNOTATION ?sentence WHERE RESOURCE ?res; DATA \"https://w3id.org/folia/\" \"annotationtype\" = \"sentence\";" \
 			--query "SELECT ANNOTATION ?word WHERE RESOURCE ?res; DATA \"https://w3id.org/folia/\" \"annotationtype\" = \"token\";" \
 			frogdeep.store.stam.json > $@
 
