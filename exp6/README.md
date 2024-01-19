@@ -7,6 +7,7 @@ This experiment shows the `stam view` command line tool (part of [stam tools](ht
 3. [stamvis3.html](stamvis3.html) - The same annotations as 1, but per sentence rather than per resource.
 4. [stamvis4.html](stamvis4.html) - Shows some structural types.
 5. [stamvis5.html](stamvis5.html) - Highlights all occurrences of the word "van" (textual search)
+6. [stamvis6.html](stamvis6.html) - Shows all (and only) named entities
 
 Queries are formulated in [STAMQL](https://github.com/annotation/stam/tree/master/extensions/stam-query), you can find them in the Makefile or the comments in the resulting HTML source code.
 
