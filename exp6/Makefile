@@ -1,6 +1,7 @@
-all: stamvis1.html stamvis2.html stamvis3.html stamvis4.html
+all: stamvis1.html stamvis2.html stamvis3.html stamvis4.html stamvis5.html
 
 stamvis1.html:
+    #Show selection of part-of-speech tags, lemmas en named entities in the resource.
 	stam view --query "SELECT RESOURCE ?res" \
 			--query "SELECT ANNOTATION ?noun WHERE RESOURCE ?res; DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-mbpos-cgn\" \"head\" = \"N\";" \
 			--query "SELECT ANNOTATION ?verb WHERE RESOURCE ?res; DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-mbpos-cgn\" \"head\" = \"WW\";" \
@@ -8,6 +9,7 @@ stamvis1.html:
 			frogdeep.store.stam.json > $@
 
 stamvis2.html:
+    #Show all PoS, lemma and named entities in the resource. Demonstrates *keys*.
 	stam view --query "SELECT RESOURCE ?res" \
 			--query "@VALUE SELECT ANNOTATION ?pos WHERE RESOURCE ?res; DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-mbpos-cgn\" \"head\";" \
 			--query "@VALUE SELECT ANNOTATION ?lemma WHERE RESOURCE ?res; DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-mblem-nl\" \"class\";" \
@@ -15,6 +17,7 @@ stamvis2.html:
 			frogdeep.store.stam.json > $@
 
 stamvis3.html:
+	#The same annotations as 1, but per sentence rather than per resource.
 	stam view --query "SELECT ANNOTATION ?sentence WHERE DATA \"https://w3id.org/folia/\" \"annotationtype\" = \"sentence\";" \
         	--query "SELECT ANNOTATION ?noun WHERE RELATION ?sentence EMBEDS; DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-mbpos-cgn\" \"head\" = \"N\";" \
 			--query "SELECT ANNOTATION ?verb WHERE RELATION ?sentence EMBEDS; DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-mbpos-cgn\" \"head\" = \"WW\";" \
@@ -22,7 +25,14 @@ stamvis3.html:
 			frogdeep.store.stam.json > $@
 
 stamvis4.html:
+	#Show some structural types.
 	stam view --query "SELECT RESOURCE ?res" \
 			--query "SELECT ANNOTATION ?sentence WHERE RESOURCE ?res; DATA \"https://w3id.org/folia/\" \"annotationtype\" = \"sentence\";" \
 			--query "SELECT ANNOTATION ?word WHERE RESOURCE ?res; DATA \"https://w3id.org/folia/\" \"annotationtype\" = \"token\";" \
+			frogdeep.store.stam.json > $@
+
+stamvis5.html:
+	#Highlight all occurrences of the word "van" (textual search)
+	stam view --query "SELECT RESOURCE ?res" \
+			--query "SELECT ANNOTATION ?match WHERE RESOURCE ?res; TEXT \"van\";" \
 			frogdeep.store.stam.json > $@
