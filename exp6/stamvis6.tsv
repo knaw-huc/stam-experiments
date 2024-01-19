@@ -1,0 +1,13 @@
+Type	Id	Text	TextSelection	https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-ner-nl/class
+Annotation	example.deep.p.1.s.1.entities.1.entity.1	Russen	example.deep#3-9	loc
+Annotation	example.deep.p.1.s.1.entities.1.entity.2	Nova Zembla	example.deep#17-28	org
+Annotation	example.deep.p.1.s.1.entities.1.entity.3	Novgorod	example.deep#75-83	loc
+Annotation	example.deep.p.1.s.2.entities.1.entity.1	Stille Oceaan	example.deep#224-237	loc
+Annotation	example.deep.p.2.s.1.entities.1.entity.1	Hugh Willoughby	example.deep#279-294	per
+Annotation	example.deep.p.2.s.2.entities.1.entity.1	Willem Barentsz	example.deep#304-319	per
+Annotation	example.deep.p.2.s.2.entities.1.entity.2	Jacob	example.deep#323-328	per
+Annotation	example.deep.p.2.s.2.entities.1.entity.3	Heemskerck	example.deep#333-343	per
+Annotation	example.deep.p.2.s.3.entities.1.entity.1	Behouden Huys	example.deep#550-563	loc
+Annotation	example.deep.p.2.s.5.entities.1.entity.1	Gerrit de Veer	example.deep#636-650	per
+Annotation	example.deep.p.2.s.7.entities.1.entity.1	Johannes Kepler	example.deep#817-832	per
+Annotation	example.deep.p.2.s.8.entities.1.entity.1	Nova Zembla-effect	example.deep#957-975	org

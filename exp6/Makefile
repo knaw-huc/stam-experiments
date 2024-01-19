@@ -1,4 +1,4 @@
-all: stamvis1.html stamvis2.html stamvis3.html stamvis4.html stamvis5.html stamvis6.html
+all: stamvis1.html stamvis2.html stamvis3.html stamvis4.html stamvis5.html stamvis5.tsv stamvis6.html stamvis6.tsv
 
 stamvis1.html:
     #Show selection of part-of-speech tags, lemmas en named entities in the resource.
@@ -38,7 +38,17 @@ stamvis5.html:
 			--query "SELECT ANNOTATION ?match WHERE RESOURCE ?res; TEXT \"van\";" \
 			frogdeep.store.stam.json > $@
 
+stamvis5.tsv:
+	#Get all occurrences of the word "van" (textual search)
+	stam query --query "SELECT ANNOTATION ?word WHERE TEXT \"van\"; DATA \"https://w3id.org/folia/\" \"annotationtype\" = \"token\";" \
+			frogdeep.store.stam.json > $@
+
 stamvis6.html:
 	#Show all and only named entities 
 	stam view --auto --query "SELECT ANNOTATION ?name WHERE DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-ner-nl\" \"class\";" \
+			frogdeep.store.stam.json > $@
+
+stamvis6.tsv:
+	#Show all and only named entities 
+	stam query --query "SELECT ANNOTATION ?name WHERE DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-ner-nl\" \"class\";" \
 			frogdeep.store.stam.json > $@
