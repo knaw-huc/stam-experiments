@@ -11,9 +11,9 @@ stamvis1.html:
 stamvis2.html:
     #Show all PoS, lemma and named entities in the resource. Demonstrates *keys*.
 	stam view --query "SELECT RESOURCE ?res" \
-			--query "@VALUE SELECT ANNOTATION ?pos WHERE RESOURCE ?res; DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-mbpos-cgn\" \"head\";" \
-			--query "@VALUE SELECT ANNOTATION ?lemma WHERE RESOURCE ?res; DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-mblem-nl\" \"class\";" \
-			--query "@VALUE SELECT ANNOTATION ?name WHERE RESOURCE ?res; DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-ner-nl\" \"class\"" \
+			--query "@VALUETAG SELECT ANNOTATION ?pos WHERE RESOURCE ?res; DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-mbpos-cgn\" \"head\";" \
+			--query "@VALUETAG SELECT ANNOTATION ?lemma WHERE RESOURCE ?res; DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-mblem-nl\" \"class\";" \
+			--query "@VALUETAG SELECT ANNOTATION ?name WHERE RESOURCE ?res; DATA \"https://raw.githubusercontent.com/proycon/folia/master/setdefinitions/frog-ner-nl\" \"class\"" \
 			frogdeep.store.stam.json > $@
 
 stamvis3.html:
@@ -27,8 +27,8 @@ stamvis3.html:
 stamvis4.html:
 	#Show some structural types.
 	stam view --query "SELECT RESOURCE ?res" \
-			--query "@VALUE SELECT ANNOTATION ?paragraph WHERE RESOURCE ?res; DATA \"https://w3id.org/folia/\" \"annotationtype\" = \"paragraph\";" \
-			--query "@VALUE SELECT ANNOTATION ?sentence WHERE RESOURCE ?res; DATA \"https://w3id.org/folia/\" \"annotationtype\" = \"sentence\";" \
+			--query "@IDTAG SELECT ANNOTATION ?paragraph WHERE RESOURCE ?res; DATA \"https://w3id.org/folia/\" \"annotationtype\" = \"paragraph\";" \
+			--query "@IDTAG SELECT ANNOTATION ?sentence WHERE RESOURCE ?res; DATA \"https://w3id.org/folia/\" \"annotationtype\" = \"sentence\";" \
 			--query "SELECT ANNOTATION ?word WHERE RESOURCE ?res; DATA \"https://w3id.org/folia/\" \"annotationtype\" = \"token\";" \
 			frogdeep.store.stam.json > $@
 
